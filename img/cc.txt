@@ -1,0 +1,56 @@
+﻿Here is a Creative Commons Open Source Image License:
+
+
+Scope of application: within this me.png
+
+
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)
+
+
+By exercising the Licensed Rights (defined below), you accept and agree to be bound by the terms and conditions of this Public License. To the extent this Public License may be interpreted as a contract, you are granted the Licensed Rights in consideration of your acceptance of these terms and conditions, and the Licensor grants you such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.
+
+
+Section 1 – Definitions
+
+
+a.  Adapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor.
+b.  Copyright and Similar Rights means copyright and/or similar rights closely related to copyright, including, but not limited to, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
+c.  Licensed Rights means the rights granted to you under the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to your use of the Licensed Material and that the Licensor has authority to license.
+d.  Licensor means the individual(s) or entity(ies) granting rights under this Public License.
+e.  NonCommercial means not primarily intended for or directed towards commercial advantage or monetary compensation. For purposes of this Public License, the exchange of the Licensed Material for other Licensed Material by digital file-sharing or similar means is NonCommercial provided there is no payment of monetary compensation in connection with the exchange.
+f.  Share means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public so that members of the public may access it from a place and at a time individually chosen by them.
+
+
+Section 2 – Scope
+
+
+a.  License grant.
+1.  Subject to the terms and conditions of this Public License, the Licensor hereby grants you a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to Share the Licensed Material.
+2.  This Public License does not permit you to Share Adapted Material.
+3.  You may not use the Licensed Material for commercial purposes.
+b.  Other rights.
+1.  Moral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights.
+2.  Patent and trademark rights are not licensed under this Public License.
+
+
+Section 3 – License Conditions
+
+
+Your exercise of the Licensed Rights is expressly made subject to the following conditions:
+
+
+a.  Attribution.
+1.  If you Share the Licensed Material, you must:
+A. Retain the following if it is supplied by the Licensor with the Licensed Material:
+i. Identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor.
+ii. A copyright notice.
+iii. A notice that refers to this Public License.
+iv. A notice that refers to the disclaimer of warranties.
+v. A URI or hyperlink to the Licensed Material to the extent reasonably practicable.
+B. Indicate if you modified the Licensed Material or not.
+C. Ensure that any such indication is reasonable.
+2.  You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which you Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
+b.  NonCommercial.
+You may not use the Licensed Material for commercial purposes.
+c.  NoDerivatives.
+You may not Share Adapted Material.
