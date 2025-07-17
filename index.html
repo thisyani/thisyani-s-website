@@ -3,105 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 初始标题，会被JS替换 -->
     <title>ヤンイー的个人主页</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
-            max-width: 960px; /* 增加一个最大宽度，在大屏幕上更好看 */
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .main {
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px; /* 给主内容区也加个圆角 */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 添加一点阴影 */
-        }
-        
-        /* --- 这是关键的修改 --- */
-        .profile-image {
-            display: block;
-            margin: 20px auto; /* 上下边距20px, 左右自动居中 */
-            max-width: 100%;   /* 核心！图片最大宽度为其容器的100% */
-            height: auto;      /* 高度自动，保持图片比例 */
-            width: 300px;      /* 可以设置一个理想的宽度 */
-            border-radius: 15px; /* 保留你的圆角样式 */
-        }
-        
-        .about, .social-media {
-            margin-bottom: 20px;
-        }
-        .about h2, .social-media h2 {
-            color: #333;
-            text-align: center;
-        }
-         .about p {
-            text-align: center;
-        }
-        .social-media ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-        .social-media li {
-            display: inline-block; /* 让列表项并排显示 */
-            margin: 0 15px;       /* 增加一些间距 */
-        }
-        .social-media a {
-            text-decoration: none;
-            color: #337ab7;
-            font-size: 1.1em;
-        }
-        .social-media a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            color: #888;
-        }
-    </style>
     <link rel="stylesheet" href="css/style.css">
+    <!-- 内联样式被移除，因为大部分样式已合并到 style.css 中 -->
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>ヤンイー的个人主页</h1>
+            <!-- 添加切换器容器 -->
+            <div class="controls">
+                <!-- 主题切换器 -->
+                <button id="theme-toggle" class="control-btn" data-lang-key="toggleTheme">切换主题</button>
+                <!-- 语言切换器 -->
+                <select id="lang-switcher" class="control-btn">
+                    <option value="zh">简体中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <h1 data-lang-key="pageTitle">ヤンイー的个人主页</h1>
         </div>
     </header>
 
     <div class="container">
         <div class="main">
-
-            <!-- 在这里为img标签添加 class="profile-image" -->
-            <img src="img/me.png" alt="ヤンイー的头像" class="profile-image">
+            <img src="img/me.png" alt="ヤンイー的头像" class="profile-image" data-lang-key-alt="avatarAlt">
             
             <section class="about">
-                <h2>关于我</h2>
-                <p>欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。</p>
+                <h2 data-lang-key="aboutMe">关于我</h2>
+                <p data-lang-key="aboutMeText">欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。</p>
             </section>
 
             <section class="social-media">
-                <h2>关注我</h2>
+                <h2 data-lang-key="followMe">关注我</h2>
                 <ul>
                     <li><a href="https://b23.tv/Aw3SaUg" target="_blank">Bilibili</a></li>
                     <li><a href="https://youtube.com/@disxiaoyi?si=k233PuFvrYLoBLde" target="_blank">YouTube</a></li>
@@ -112,7 +47,10 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 ヤンイー的个人主页</p>
+        <p data-lang-key="footerText">&copy; 2025 ヤンイー的个人主页</p>
     </footer>
+
+    <!-- 引入JavaScript文件 -->
+    <script src="js/main.js"></script>
 </body>
 </html>
