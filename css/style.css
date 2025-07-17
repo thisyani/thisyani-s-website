@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') 
+
+format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+
+    font-family: 'CustomFont', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.main {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    width: 250px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.about, .social-media {
+    margin-bottom: 20px;
+}
+
+.about h2, .social-media h2 {
+    color: #333;
+    text-align: center;
+}
+
+ .about p {
+    text-align: center;
+}
+
+.social-media ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.social-media li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.social-media a {
+    text-decoration: none;
+    color: #337ab7;
+    font-size: 1.1em;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: #888;
+}
