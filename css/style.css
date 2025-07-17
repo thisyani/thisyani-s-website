@@ -1,20 +1,48 @@
+/* --- 字体定义 (保持不变) --- */
 @font-face {
   font-family: 'CustomFont';
-  src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') 
-
-format('woff2');
+  src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-body {
+/* --- 变量定义，方便切换主题 --- */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg-color: #fff;
+    --header-bg-color: #333;
+    --header-text-color: #fff;
+    --link-color: #337ab7;
+    --footer-text-color: #888;
+    --shadow-color: rgba(0,0,0,0.1);
+    --btn-bg-color: #e0e0e0;
+    --btn-text-color: #333;
+}
 
+/* --- 深色模式变量 --- */
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg-color: #1e1e1e;
+    --header-bg-color: #1e1e1e;
+    --header-text-color: #e0e0e0;
+    --link-color: #58a6ff;
+    --footer-text-color: #aaa;
+    --shadow-color: rgba(255,255,255,0.1);
+    --btn-bg-color: #333;
+    --btn-text-color: #e0e0e0;
+}
+
+/* --- 通用样式 --- */
+body {
     font-family: 'CustomFont', Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #333;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
 }
 
 .container {
@@ -26,10 +54,12 @@ body {
 }
 
 header {
-    background: #333;
-    color: #fff;
+    background: var(--header-bg-color);
+    color: var(--header-text-color);
     padding: 1rem 0;
     text-align: center;
+    position: relative;
+    transition: background 0.3s;
 }
 
 header h1 {
@@ -38,9 +68,10 @@ header h1 {
 
 .main {
     padding: 20px;
-    background: #fff;
+    background: var(--card-bg-color);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background 0.3s;
 }
 
 .profile-image {
@@ -57,11 +88,11 @@ header h1 {
 }
 
 .about h2, .social-media h2 {
-    color: #333;
+    color: var(--text-color);
     text-align: center;
 }
 
- .about p {
+.about p {
     text-align: center;
 }
 
@@ -78,8 +109,9 @@ header h1 {
 
 .social-media a {
     text-decoration: none;
-    color: #337ab7;
+    color: var(--link-color);
     font-size: 1.1em;
+    transition: color 0.3s;
 }
 
 .social-media a:hover {
@@ -90,5 +122,46 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 30px;
-    color: #888;
+    color: var(--footer-text-color);
+    transition: color 0.3s;
+}
+
+/* --- 切换器样式 --- */
+.controls {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--text-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.control-btn:hover {
+    opacity: 0.8;
+}
+
+#lang-switcher {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 25px;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: .65em auto;
+}
+
+/* 深色模式下 select 的箭头颜色 */
+body.dark-mode #lang-switcher {
+     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e0e0e0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
 }
