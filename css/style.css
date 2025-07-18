@@ -1,4 +1,4 @@
-/* --- 字体定义 --- */
+/* --- 字体定义 (保持不变) --- */
 @font-face {
   font-family: 'CustomFont'; /* 中文字体 */
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
@@ -6,15 +6,14 @@
   font-style: normal;
 }
 
-/* --- 新增：日语字体定义 --- */
 @font-face {
   font-family: 'JapaneseFont'; /* 日语字体 */
   src: url('../fonts/NotoSerifJP-Medium.ttf') format('truetype');
-  font-weight: normal; /* 'Medium' 对应 normal 或 500，这里用 normal 即可 */
+  font-weight: normal;
   font-style: normal;
 }
 
-/* --- 变量定义，方便切换主题 --- */
+/* --- 变量定义 (保持不变) --- */
 :root {
     --bg-color: #f4f4f4;
     --text-color: #333;
@@ -28,7 +27,6 @@
     --btn-text-color: #333;
 }
 
-/* --- 深色模式变量 --- */
 body.dark-mode {
     --bg-color: #121212;
     --text-color: #e0e0e0;
@@ -44,7 +42,7 @@ body.dark-mode {
 
 /* --- 通用样式 --- */
 body {
-    font-family: 'CustomFont', Arial, sans-serif; /* 默认字体 */
+    font-family: 'CustomFont', Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -53,12 +51,9 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-/* --- 新增：为日语模式应用特定字体 --- */
-/* 当 <html> 标签有 lang="ja" 属性时，应用此样式 */
 html[lang="ja"] body {
     font-family: 'JapaneseFont', 'CustomFont', sans-serif;
 }
-
 
 .container {
     width: 90%;
@@ -68,19 +63,31 @@ html[lang="ja"] body {
     padding: 20px 0;
 }
 
+/* --- 页头 Header --- */
 header {
     background: var(--header-bg-color);
     color: var(--header-text-color);
     padding: 1rem 0;
     text-align: center;
-    position: relative;
     transition: background 0.3s;
+    position: relative;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: static;
 }
 
 header h1 {
     margin: 0;
+    text-align: left;
+    flex-grow: 1; /* 让标题占据剩余空间 */
 }
 
+/* --- 主要内容区域 --- */
+/* (原 .main 样式保持不变) */
 .main {
     padding: 20px;
     background: var(--card-bg-color);
@@ -89,65 +96,97 @@ header h1 {
     transition: background 0.3s;
 }
 
-.profile-image {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    width: 250px;
-    height: auto;
-    border-radius: 15px;
+/* ... 其他已有样式保持不变 ... */
+.profile-image, .about, .social-media, .about h2, .social-media h2, .about p, .social-media ul, .social-media li, .social-media a, footer {
+    /* 假设这些样式都已存在且正确 */
+}
+.profile-image { display: block; margin: 20px auto; max-width: 100%; width: 250px; height: auto; border-radius: 15px; }
+.about, .social-media { margin-bottom: 20px; }
+.about h2, .social-media h2 { color: var(--text-color); text-align: center; }
+.about p { text-align: center; }
+.social-media ul { list-style: none; padding: 0; text-align: center; }
+.social-media li { display: inline-block; margin: 0 15px; }
+.social-media a { text-decoration: none; color: var(--link-color); font-size: 1.1em; transition: color 0.3s; }
+.social-media a:hover { text-decoration: underline; }
+footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--footer-text-color); transition: color 0.3s; }
+
+/*
+================================
+新增：导航栏、侧边栏和遮罩层样式
+================================
+*/
+
+/* 移动端菜单按钮 (汉堡) */
+.menu-toggle {
+    display: block; /* 默认显示 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001; /* 确保在最上层 */
+}
+.menu-toggle svg {
+    stroke: var(--header-text-color);
 }
 
-.about, .social-media {
-    margin-bottom: 20px;
-}
-
-.about h2, .social-media h2 {
+/* 关闭按钮 (在侧边栏内) */
+.close-menu {
+    display: block; /* 默认显示 */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
     color: var(--text-color);
-    text-align: center;
+    font-size: 2.5rem;
+    cursor: pointer;
 }
 
-.about p {
-    text-align: center;
+/* 导航栏主体 (移动端作为侧边栏) */
+#main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--card-bg-color);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 60px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px; /* 增加项目间距 */
 }
 
-.social-media ul {
+#main-nav.open {
+    transform: translateX(0);
+}
+
+/* 导航链接列表 */
+.nav-links {
     list-style: none;
     padding: 0;
-    text-align: center;
+    margin: 0;
 }
-
-.social-media li {
-    display: inline-block;
-    margin: 0 15px;
-}
-
-.social-media a {
+.nav-links a {
     text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    padding: 10px 0;
+    display: block;
+}
+.nav-links a:hover {
     color: var(--link-color);
-    font-size: 1.1em;
-    transition: color 0.3s;
 }
 
-.social-media a:hover {
-    text-decoration: underline;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    color: var(--footer-text-color);
-    transition: color 0.3s;
-}
-
-/* --- 切换器样式 --- */
+/* 切换器容器 */
 .controls {
-    position: absolute;
-    top: 10px;
-    right: 20px;
     display: flex;
-    gap: 10px;
+    flex-direction: column; /* 移动端垂直排列 */
+    align-items: flex-start;
+    gap: 15px;
 }
 
 .control-btn {
@@ -161,22 +200,53 @@ footer {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.control-btn:hover {
-    opacity: 0.8;
+/* 遮罩层 */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+.overlay.active {
+    display: block;
 }
 
-#lang-switcher {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 25px;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 8px top 50%;
-    background-size: .65em auto;
-}
 
-/* 深色模式下 select 的箭头颜色 */
-body.dark-mode #lang-switcher {
-     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e0e0e0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+/* 
+================================
+桌面端样式 (屏幕宽度 > 768px)
+================================
+*/
+@media (min-width: 768px) {
+    /* 隐藏移动端专属按钮 */
+    .menu-toggle, .close-menu {
+        display: none;
+    }
+
+    /* 将导航栏恢复为正常文档流的一部分 */
+    #main-nav {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        transform: none;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .nav-links a {
+        padding: 0; /* 移除移动端的垂直内边距 */
+    }
+
+    /* 将切换器恢复为水平排列 */
+    .controls {
+        flex-direction: row;
+        gap: 10px;
+    }
 }
