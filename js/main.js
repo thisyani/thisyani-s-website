@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. 语言翻译数据 ---
+    // --- 1. 语言翻译数据 (新增 blogLink) ---
     const translations = {
         en: {
             pageTitle: "YanYi's Homepage",
@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             aboutMeText: "Welcome to my homepage. I am a content creator active on multiple platforms. You can find me on Bilibili, YouTube, and X.",
             followMe: "Follow Me",
             footerText: "&copy; 2025 YanYi's Homepage",
-            toggleTheme: "Toggle Theme"
+            toggleTheme: "Toggle Theme",
+            blogLink: "Blog" // 新增
         },
         ja: {
             pageTitle: "ヤンイーのホームページ",
@@ -18,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
             aboutMeText: "私のホームページへようこそ。私は複数のプラットフォームで活動しているコンテンツクリエーターです。Bilibili、YouTube、Xで私を見つけることができます。",
             followMe: "フォローする",
             footerText: "&copy; 2025 ヤンイーのホームページ",
-            toggleTheme: "テーマ切り替え"
+            toggleTheme: "テーマ切り替え",
+            blogLink: "ブログ" // 新增
         },
         zh: {
             pageTitle: "ヤンイー的个人主页",
@@ -27,22 +29,44 @@ document.addEventListener('DOMContentLoaded', () => {
             aboutMeText: "欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。",
             followMe: "关注我",
             footerText: "&copy; 2025 ヤンイー的个人主页",
-            toggleTheme: "切换主题"
+            toggleTheme: "切换主题",
+            blogLink: "博客" // 新增
         }
     };
 
-    // --- 2. 获取 DOM 元素 ---
+    // --- 2. 获取 DOM 元素 (新增侧边栏相关元素) ---
     const langSwitcher = document.getElementById('lang-switcher');
     const themeToggle = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
     const bodyEl = document.body;
+    
+    // 新增元素
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const mainNav = document.getElementById('main-nav');
+    const overlay = document.getElementById('overlay');
 
-    // --- 3. 语言切换功能 ---
+    // --- 3. 侧边栏控制功能 (新增) ---
+    const openSidebar = () => {
+        mainNav.classList.add('open');
+        overlay.classList.add('active');
+    };
+
+    const closeSidebar = () => {
+        mainNav.classList.remove('open');
+        overlay.classList.remove('active');
+    };
+
+    menuToggle.addEventListener('click', openSidebar);
+    closeMenu.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+
+    // --- 4. 语言切换功能 (保持不变) ---
     const setLanguage = (lang) => {
         const langData = translations[lang];
         if (!langData) return;
 
-        // 更新所有带 data-lang-key 的元素
         document.querySelectorAll('[data-lang-key]').forEach(el => {
             const key = el.getAttribute('data-lang-key');
             if (langData[key]) {
@@ -50,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // 更新带 data-lang-key-alt 的 img 标签
          document.querySelectorAll('[data-lang-key-alt]').forEach(el => {
             const key = el.getAttribute('data-lang-key-alt');
             if (langData[key]) {
@@ -58,22 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 更新页面标题
         document.title = langData.pageTitle;
-        // 更新 html 的 lang 属性
         htmlEl.lang = lang === 'zh' ? 'zh-CN' : lang;
-        // 保存用户选择
         localStorage.setItem('preferredLanguage', lang);
     };
 
-    // --- 4. 主题切换功能 ---
+    // --- 5. 主题切换功能 (保持不变) ---
     const setTheme = (theme) => {
         if (theme === 'dark') {
             bodyEl.classList.add('dark-mode');
         } else {
             bodyEl.classList.remove('dark-mode');
         }
-        // 保存用户选择
         localStorage.setItem('preferredTheme', theme);
     };
 
@@ -82,12 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTheme(currentTheme);
     });
 
-    // --- 5. 初始化 ---
-    // 读取保存的语言或根据浏览器语言设置默认值
+    // --- 6. 初始化 (保持不变) ---
     const savedLang = localStorage.getItem('preferredLanguage');
-    const browserLang = navigator.language.split('-')[0]; // "en-US" -> "en"
+    const browserLang = navigator.language.split('-')[0];
     
-    let initialLang = 'zh'; // 默认中文
+    let initialLang = 'zh';
     if (savedLang) {
         initialLang = savedLang;
     } else if (translations[browserLang]) {
@@ -97,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     langSwitcher.value = initialLang;
     setLanguage(initialLang);
 
-    // 读取保存的主题或根据系统偏好设置
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -110,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTheme(initialTheme);
     
-    // 监听语言切换器的变化
     langSwitcher.addEventListener('change', (e) => {
         setLanguage(e.target.value);
     });
