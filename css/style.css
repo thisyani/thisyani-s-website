@@ -114,7 +114,9 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
 }
 .menu-toggle svg { stroke: var(--header-text-color); }
 
-/* 侧边栏主体 (默认隐藏) */
+/*
+ * 侧边栏主体 (关键修改)
+ */
 #main-nav {
     display: flex;
     position: fixed;
@@ -130,6 +132,8 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
+    overflow-y: auto; /* ★★★ 新增：当内容超出高度时，允许垂直滚动 ★★★ */
+    box-sizing: border-box; /* 推荐：确保内边距不会增加元素的总高度 */
 }
 #main-nav.open { transform: translateX(0); }
 
@@ -206,6 +210,7 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         align-items: center;
         gap: 25px;
         z-index: auto;
+        overflow-y: visible; /* 桌面端不需要滚动 */
     }
     
     .nav-links a {
