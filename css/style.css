@@ -1,8 +1,16 @@
-/* --- 字体定义 (保持不变) --- */
+/* --- 字体定义 --- */
 @font-face {
-  font-family: 'CustomFont';
+  font-family: 'CustomFont'; /* 中文字体 */
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+}
+
+/* --- 新增：日语字体定义 --- */
+@font-face {
+  font-family: 'JapaneseFont'; /* 日语字体 */
+  src: url('../fonts/NotoSerifJP-Medium.ttf') format('truetype');
+  font-weight: normal; /* 'Medium' 对应 normal 或 500，这里用 normal 即可 */
   font-style: normal;
 }
 
@@ -36,7 +44,7 @@ body.dark-mode {
 
 /* --- 通用样式 --- */
 body {
-    font-family: 'CustomFont', Arial, sans-serif;
+    font-family: 'CustomFont', Arial, sans-serif; /* 默认字体 */
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -44,6 +52,13 @@ body {
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
 }
+
+/* --- 新增：为日语模式应用特定字体 --- */
+/* 当 <html> 标签有 lang="ja" 属性时，应用此样式 */
+html[lang="ja"] body {
+    font-family: 'JapaneseFont', 'CustomFont', sans-serif;
+}
+
 
 .container {
     width: 90%;
