@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 安全检查：只有在元素存在时才添加事件监听
     if (menuToggle) { menuToggle.addEventListener('click', openSidebar); }
     if (closeMenu) { closeMenu.addEventListener('click', closeSidebar); }
     if (overlay) { overlay.addEventListener('click', closeSidebar); }
@@ -101,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredTheme', theme);
     };
     
-    // 安全检查
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = bodyEl.classList.contains('dark-mode') ? 'light' : 'dark';
@@ -110,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 6. 初始化 ---
-    // 语言初始化
     if (langSwitcher) {
         const savedLang = localStorage.getItem('preferredLanguage');
         const browserLang = navigator.language.split('-')[0];
@@ -130,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 主题初始化
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let initialTheme = 'light';
