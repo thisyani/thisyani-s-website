@@ -95,7 +95,7 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
 
 /*
 ================================
-移动端: 导航栏和侧边栏样式
+移动端: 导航栏和侧边栏样式 (最终修复版)
 ================================
 */
 
@@ -119,21 +119,26 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
  */
 #main-nav {
     display: flex;
+    flex-direction: column;
+    /* ★★★ 修改：使用 space-between 来分离顶部和底部内容 ★★★ */
+    justify-content: space-between;
+    align-items: stretch; /* 让子项宽度撑满 */
+    
     position: fixed;
     top: 0;
     left: 0;
     width: 280px;
-    height: 100vh;
+    height: 100vh; /* 100% 视窗高度 */
     background: var(--card-bg-color);
     z-index: 1002;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
+    
     padding: 60px 20px 20px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    overflow-y: auto; /* ★★★ 新增：当内容超出高度时，允许垂直滚动 ★★★ */
-    box-sizing: border-box; /* 推荐：确保内边距不会增加元素的总高度 */
+    box-sizing: border-box; 
+    
+    /* ★★★ 关键：让容器本身可以滚动 ★★★ */
+    overflow-y: auto;
 }
 #main-nav.open { transform: translateX(0); }
 
@@ -160,12 +165,11 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
 .controls {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch; /* 让按钮也撑满宽度 */
     gap: 15px;
-    margin-top: auto; /* 将控制器推到底部 */
     padding-top: 20px;
     border-top: 1px solid var(--btn-border-color);
-    width: 100%;
+    /* ★★★ 移除：不再需要 margin-top: auto ★★★ */
 }
 .control-btn {
     padding: 8px 12px;
@@ -176,6 +180,7 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     cursor: pointer;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
+    text-align: center;
 }
 
 /* 遮罩层 */
@@ -226,7 +231,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     .controls {
         flex-direction: row;
         gap: 10px;
-        margin-top: 0;
         padding-top: 0;
         border-top: none;
         width: auto;
