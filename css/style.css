@@ -1,4 +1,4 @@
-/* --- 字体定义 (无变化) --- */
+/* --- 字体定义 --- */
 @font-face {
   font-family: 'CustomFont';
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
@@ -12,11 +12,35 @@
   font-style: normal;
 }
 
-/* --- 变量定义 (无变化) --- */
-:root { /* ... */ }
-body.dark-mode { /* ... */ }
+/* --- 变量定义 --- */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg-color: #fff;
+    --header-bg-color: #333;
+    --header-text-color: #fff;
+    --link-color: #337ab7;
+    --footer-text-color: #888;
+    --shadow-color: rgba(0,0,0,0.1);
+    --btn-bg-color: #e0e0e0;
+    --btn-text-color: #333;
+    --btn-border-color: #ccc;
+}
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg-color: #1e1e1e;
+    --header-bg-color: #1e1e1e;
+    --header-text-color: #e0e0e0;
+    --link-color: #58a6ff;
+    --footer-text-color: #aaa;
+    --shadow-color: rgba(255,255,255,0.1);
+    --btn-bg-color: #333;
+    --btn-text-color: #e0e0e0;
+    --btn-border-color: #555;
+}
 
-/* --- 通用样式 (无变化) --- */
+/* --- 通用样式 --- */
 body {
     font-family: 'CustomFont', Arial, sans-serif;
     line-height: 1.6;
@@ -33,38 +57,31 @@ html[lang="ja"] body {
     width: 90%;
     max-width: 960px;
     margin: auto;
-    overflow: visible; /* CHANGED: 设置为 visible 或移除 overflow:hidden 来避免裁剪绝对定位的子元素 */
     padding: 20px 0;
 }
+.main-content.container {
+    padding-top: 40px;
+}
 
-/* 
-================================
-页头 Header (关键修改区域)
-================================
-*/
+/* --- Header --- */
 header {
     background: var(--header-bg-color);
     color: var(--header-text-color);
     padding: 1rem 0;
     transition: background 0.3s;
 }
-
 header .container {
-    position: relative; /* ADDED: 设为相对定位，作为汉堡按钮绝对定位的基准 */
-    /* REMOVED: display: flex; justify-content: space-between; align-items: center; */
-    /* 这些 flex 样式将被移动到下面的 @media 规则中 */
+    position: relative;
+    display: flex;
+    justify-content: center; /* 移动端标题居中 */
+    align-items: center;
 }
-
 header h1 {
     margin: 0;
-    text-align: center; /* CHANGED: 移动端默认为居中对齐 */
-    padding: 0 40px; /* ADDED: 增加内边距，防止标题与两侧按钮重叠 */
+    font-size: 1.5em;
 }
 
-/* ... 其他已有样式保持不变 ... */
-.main, .profile-image, .about, .social-media, footer {
-    /* 假设这些样式都已存在且正确 */
-}
+/* --- 主要内容区域 --- */
 .main { padding: 20px; background: var(--card-bg-color); border-radius: 8px; box-shadow: 0 0 10px var(--shadow-color); transition: background 0.3s; }
 .profile-image { display: block; margin: 20px auto; max-width: 100%; width: 250px; height: auto; border-radius: 15px; }
 .about, .social-media { margin-bottom: 20px; }
@@ -76,32 +93,47 @@ header h1 {
 .social-media a:hover { text-decoration: underline; }
 footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--footer-text-color); transition: color 0.3s; }
 
-
 /*
 ================================
-导航栏、侧边栏和遮罩层样式 (关键修改区域)
+移动端: 导航栏和侧边栏样式
 ================================
 */
 
-/* 移动端菜单按钮 (汉堡) */
+/* 汉堡按钮 */
 .menu-toggle {
-    display: block; 
+    display: block;
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
-    z-index: 1001;
-    /* ADDED: 使用绝对定位将其放在右上角 */
     position: absolute;
-    right: 0px; /* 调整具体位置 */
+    right: 0px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1001;
 }
-.menu-toggle svg {
-    stroke: var(--header-text-color);
-}
+.menu-toggle svg { stroke: var(--header-text-color); }
 
-/* 关闭按钮 (在侧边栏内) - 样式无变化 */
+/* 侧边栏主体 (默认隐藏) */
+#main-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--card-bg-color);
+    z-index: 1002;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 60px 20px 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+#main-nav.open { transform: translateX(0); }
+
+/* 侧边栏关闭按钮 */
 .close-menu {
     display: block;
     position: absolute;
@@ -112,77 +144,48 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     color: var(--text-color);
     font-size: 2.5rem;
     cursor: pointer;
+    line-height: 1;
 }
 
-/* 导航栏主体 (移动端作为侧边栏) - 样式无变化 */
-#main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100vh;
-    background: var(--card-bg-color);
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    padding: 60px 20px 20px 20px;
+/* 侧边栏内的导航链接 */
+.nav-links { list-style: none; padding: 0; margin: 0; }
+.nav-links a { text-decoration: none; color: var(--text-color); font-size: 1.2em; padding: 10px 0; display: block; }
+.nav-links a:hover { color: var(--link-color); }
+
+/* 侧边栏内的控制器 */
+.controls {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 30px;
-}
-#main-nav.open {
-    transform: translateX(0);
-}
-
-/* 导航链接列表 - 样式无变化 */
-.nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 1.2em;
-    padding: 10px 0;
-    display: block;
-}
-.nav-links a:hover {
-    color: var(--link-color);
-}
-
-/* 切换器容器 - 样式无变化 */
-.controls {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start;
     gap: 15px;
+    margin-top: auto; /* 将控制器推到底部 */
+    padding-top: 20px;
+    border-top: 1px solid var(--btn-border-color);
+    width: 100%;
 }
-.control-btn { /* ... */ }
+.control-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--btn-border-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-/* 遮罩层 - 样式无变化 */
-.overlay { /* ... */ }
-.overlay.active { /* ... */ }
+/* 遮罩层 */
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1001; }
+.overlay.active { display: block; }
 
-
-/* 
+/*
 ================================
-桌面端样式 (屏幕宽度 > 768px) (关键修改区域)
+桌面端样式 (屏幕宽度 > 768px)
 ================================
 */
 @media (min-width: 768px) {
-    /* ADDED: 仅在桌面端应用flex布局 */
     header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* ADDED: 在桌面端重置标题样式 */
-    header h1 {
-        text-align: left;
-        padding: 0;
+        justify-content: space-between; /* 桌面端两端对齐 */
     }
 
     /* 隐藏移动端专属按钮 */
@@ -190,8 +193,9 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         display: none;
     }
 
-    /* 将导航栏恢复为正常文档流的一部分 */
+    /* 恢复导航栏为正常的顶栏 */
     #main-nav {
+        display: flex;
         position: static;
         width: auto;
         height: auto;
@@ -201,24 +205,31 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         flex-direction: row;
         align-items: center;
         gap: 25px;
+        z-index: auto;
     }
     
     .nav-links a {
         padding: 0;
-        color: var(--header-text-color); /* ADDED: 确保链接颜色与header文本颜色一致 */
+        color: var(--header-text-color);
+        font-size: 1em;
     }
-    
-    body.dark-mode .nav-links a {
-        color: var(--header-text-color); /* 确保深色模式下也一致 */
-    }
-
     .nav-links a:hover {
-        text-decoration: underline; /* 恢复悬停效果 */
+        text-decoration: underline;
     }
 
-    /* 将切换器恢复为水平排列 */
+    /* 恢复控制器为水平排列 */
     .controls {
         flex-direction: row;
         gap: 10px;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        width: auto;
+    }
+
+    .control-btn {
+        background-color: transparent;
+        border-color: var(--header-text-color);
+        color: var(--header-text-color);
     }
 }
