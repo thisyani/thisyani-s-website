@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. 语言翻译数据 (新增 blogLink) ---
+    // --- 1. 语言翻译数据 ---
     const translations = {
         en: {
             pageTitle: "YanYi's Homepage",
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "Follow Me",
             footerText: "&copy; 2025 YanYi's Homepage",
             toggleTheme: "Toggle Theme",
-            blogLink: "Blog" // 新增
+            blogLink: "Blog"
         },
         ja: {
             pageTitle: "ヤンイーのホームページ",
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "フォローする",
             footerText: "&copy; 2025 ヤンイーのホームページ",
             toggleTheme: "テーマ切り替え",
-            blogLink: "ブログ" // 新增
+            blogLink: "ブログ"
         },
         zh: {
             pageTitle: "ヤンイー的个人主页",
@@ -30,39 +30,48 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "关注我",
             footerText: "&copy; 2025 ヤンイー的个人主页",
             toggleTheme: "切换主题",
-            blogLink: "博客" // 新增
+            blogLink: "博客"
         }
     };
 
-    // --- 2. 获取 DOM 元素 (新增侧边栏相关元素) ---
+    // --- 2. 获取 DOM 元素 ---
     const langSwitcher = document.getElementById('lang-switcher');
     const themeToggle = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
     const bodyEl = document.body;
-    
-    // 新增元素
     const menuToggle = document.getElementById('menu-toggle');
     const closeMenu = document.getElementById('close-menu');
     const mainNav = document.getElementById('main-nav');
     const overlay = document.getElementById('overlay');
 
-    // --- 3. 侧边栏控制功能 (新增) ---
+    // --- 3. 侧边栏控制功能 (添加了安全检查) ---
     const openSidebar = () => {
-        mainNav.classList.add('open');
-        overlay.classList.add('active');
+        if (mainNav && overlay) {
+            mainNav.classList.add('open');
+            overlay.classList.add('active');
+        }
     };
 
     const closeSidebar = () => {
-        mainNav.classList.remove('open');
-        overlay.classList.remove('active');
+        if (mainNav && overlay) {
+            mainNav.classList.remove('open');
+            overlay.classList.remove('active');
+        }
     };
 
-    menuToggle.addEventListener('click', openSidebar);
-    closeMenu.addEventListener('click', closeSidebar);
-    overlay.addEventListener('click', closeSidebar);
+    // 安全检查：只有在元素存在时才添加事件监听
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openSidebar);
+    }
+    if (closeMenu) {
+        closeMenu.addEventListener('click', closeSidebar);
+    }
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
 
 
-    // --- 4. 语言切换功能 (保持不变) ---
+    // --- 4. 语言切换功能 ---
     const setLanguage = (lang) => {
         const langData = translations[lang];
         if (!langData) return;
@@ -74,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-         document.querySelectorAll('[data-lang-key-alt]').forEach(el => {
+        document.querySelectorAll('[data-lang-key-alt]').forEach(el => {
             const key = el.getAttribute('data-lang-key-alt');
             if (langData[key]) {
                 el.setAttribute('alt', langData[key]);
@@ -86,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLanguage', lang);
     };
 
-    // --- 5. 主题切换功能 (保持不变) ---
+    // --- 5. 主题切换功能 ---
     const setTheme = (theme) => {
         if (theme === 'dark') {
             bodyEl.classList.add('dark-mode');
@@ -95,25 +104,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         localStorage.setItem('preferredTheme', theme);
     };
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = bodyEl.classList.contains('dark-mode') ? 'light' : 'dark';
-        setTheme(currentTheme);
-    });
-
-    // --- 6. 初始化 (保持不变) ---
-    const savedLang = localStorage.getItem('preferredLanguage');
-    const browserLang = navigator.language.split('-')[0];
     
-    let initialLang = 'zh';
-    if (savedLang) {
-        initialLang = savedLang;
-    } else if (translations[browserLang]) {
-        initialLang = browserLang;
+    // 安全检查：只有在元素存在时才添加事件监听
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = bodyEl.classList.contains('dark-mode') ? 'light' : 'dark';
+            setTheme(currentTheme);
+        });
     }
-    
-    langSwitcher.value = initialLang;
-    setLanguage(initialLang);
+
+
+    // --- 6. 初始化 ---
+    // 安全检查：只有在元素存在时才进行初始化和添加事件监听
+    if (langSwitcher) {
+        const savedLang = localStorage.getItem('preferredLanguage');
+        const browserLang = navigator.language.split('-')[0];
+        
+        let initialLang = 'zh';
+        if (savedLang) {
+            initialLang = savedLang;
+        } else if (translations[browserLang]) {
+            initialLang = browserLang;
+        }
+        
+        langSwitcher.value = initialLang;
+        setLanguage(initialLang);
+
+        langSwitcher.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+    }
 
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -126,8 +146,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     setTheme(initialTheme);
-    
-    langSwitcher.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
-    });
 });
