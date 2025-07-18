@@ -44,31 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const overlay = document.getElementById('overlay');
 
-    // --- 3. 侧边栏控制功能 (添加了安全检查) ---
+    // --- 3. 侧边栏控制功能 ---
     const openSidebar = () => {
-        if (mainNav && overlay) {
+        if (mainNav && overlay && bodyEl) {
             mainNav.classList.add('open');
             overlay.classList.add('active');
+            bodyEl.classList.add('no-scroll'); // 锁定body滚动
         }
     };
 
     const closeSidebar = () => {
-        if (mainNav && overlay) {
+        if (mainNav && overlay && bodyEl) {
             mainNav.classList.remove('open');
             overlay.classList.remove('active');
+            bodyEl.classList.remove('no-scroll'); // 解锁body滚动
         }
     };
 
     // 安全检查：只有在元素存在时才添加事件监听
-    if (menuToggle) {
-        menuToggle.addEventListener('click', openSidebar);
-    }
-    if (closeMenu) {
-        closeMenu.addEventListener('click', closeSidebar);
-    }
-    if (overlay) {
-        overlay.addEventListener('click', closeSidebar);
-    }
+    if (menuToggle) { menuToggle.addEventListener('click', openSidebar); }
+    if (closeMenu) { closeMenu.addEventListener('click', closeSidebar); }
+    if (overlay) { overlay.addEventListener('click', closeSidebar); }
 
 
     // --- 4. 语言切换功能 ---
@@ -105,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredTheme', theme);
     };
     
-    // 安全检查：只有在元素存在时才添加事件监听
+    // 安全检查
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = bodyEl.classList.contains('dark-mode') ? 'light' : 'dark';
@@ -113,9 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     // --- 6. 初始化 ---
-    // 安全检查：只有在元素存在时才进行初始化和添加事件监听
+    // 语言初始化
     if (langSwitcher) {
         const savedLang = localStorage.getItem('preferredLanguage');
         const browserLang = navigator.language.split('-')[0];
@@ -135,15 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 主题初始化
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     let initialTheme = 'light';
     if (savedTheme) {
         initialTheme = savedTheme;
     } else if (prefersDark) {
         initialTheme = 'dark';
     }
-    
     setTheme(initialTheme);
 });
