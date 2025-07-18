@@ -2,13 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. 语言翻译数据 ---
     const translations = {
+        'zh-CN': {
+            pageTitle: "ヤンイー的个人主页",
+            avatarAlt: "ヤンイー的头像",
+            aboutMe: "关于我",
+            aboutMeText: "欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。",
+            followMe: "关注我",
+            footerText: "&copy; 2025 ヤンイー的个人主页",
+            toggleTheme: "切换主题",
+            blogLink: "博客"
+        },
+        'zh-TW': { // 新增繁體中文
+            pageTitle: "ヤンイー的個人主頁",
+            avatarAlt: "ヤンイー的頭像",
+            aboutMe: "關於我",
+            aboutMeText: "歡迎來到我的個人主頁。我是一名活躍在多個平台上的內容創作者，你可以在Bilibili、YouTube和X上找到我。",
+            followMe: "關注我",
+            footerText: "&copy; 2025 ヤンイー的個人主頁",
+            toggleTheme: "切換主題",
+            blogLink: "博客"
+        },
         en: {
-            pageTitle: "YanYi's Homepage",
-            avatarAlt: "YanYi's avatar",
+            pageTitle: "ヤンイー's Homepage",
+            avatarAlt: "ヤンイー's avatar",
             aboutMe: "About Me",
             aboutMeText: "Welcome to my homepage. I am a content creator active on multiple platforms. You can find me on Bilibili, YouTube, and X.",
             followMe: "Follow Me",
-            footerText: "&copy; 2025 YanYi's Homepage",
+            footerText: "&copy; 2025 ヤンイー's Homepage",
             toggleTheme: "Toggle Theme",
             blogLink: "Blog"
         },
@@ -22,15 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleTheme: "テーマ切り替え",
             blogLink: "ブログ"
         },
-        zh: {
-            pageTitle: "ヤンイー的个人主页",
-            avatarAlt: "ヤンイー的头像",
-            aboutMe: "关于我",
-            aboutMeText: "欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。",
-            followMe: "关注我",
-            footerText: "&copy; 2025 ヤンイー的个人主页",
-            toggleTheme: "切换主题",
-            blogLink: "博客"
+        ru: { // 新增俄语
+            pageTitle: "Домашняя страница ヤンイー",
+            avatarAlt: "Аватар ヤンイー",
+            aboutMe: "Обо мне",
+            aboutMeText: "Добро пожаловать на мою домашнюю страницу. Я создатель контента, активный на нескольких платформах. Вы можете найти меня на Bilibili, YouTube и X.",
+            followMe: "Подписаться",
+            footerText: "&copy; 2025 Домашняя страница ヤンイー",
+            toggleTheme: "Сменить тему",
+            blogLink: "Блог"
         }
     };
 
@@ -86,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.title = langData.pageTitle;
-        htmlEl.lang = lang === 'zh' ? 'zh-CN' : lang;
+        htmlEl.lang = lang; // 直接使用语言代码 (e.g., "zh-CN", "ru")
         localStorage.setItem('preferredLanguage', lang);
     };
 
@@ -108,15 +128,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 6. 初始化 ---
+    // 语言初始化
     if (langSwitcher) {
         const savedLang = localStorage.getItem('preferredLanguage');
-        const browserLang = navigator.language.split('-')[0];
-        
-        let initialLang = 'zh';
+        const browserLang = navigator.language;
+
+        // 设置一个默认语言
+        let initialLang = 'zh-CN'; 
+
         if (savedLang) {
             initialLang = savedLang;
         } else if (translations[browserLang]) {
+            // 完美匹配 (e.g., 浏览器是 "en", 我们有 "en")
             initialLang = browserLang;
+        } else if (browserLang.startsWith('zh-TW') || browserLang.startsWith('zh-HK')) {
+            initialLang = 'zh-TW';
+        } else if (browserLang.startsWith('zh')) {
+            initialLang = 'zh-CN';
+        } else if (browserLang.startsWith('ru')) {
+            initialLang = 'ru';
+        } else if (browserLang.startsWith('ja')) {
+            initialLang = 'ja';
+        } else if (browserLang.startsWith('en')) {
+            initialLang = 'en';
         }
         
         langSwitcher.value = initialLang;
@@ -127,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 主题初始化
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let initialTheme = 'light';
