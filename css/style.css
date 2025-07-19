@@ -100,6 +100,8 @@ header h1 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* ★★★ 修改：强制标题使用指定字体 ★★★ */
+    font-family: 'JapaneseFont', sans-serif;
 }
 
 /* --- 主要内容区域 --- */
