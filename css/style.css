@@ -1,18 +1,18 @@
 /* --- 字体定义 --- */
 @font-face {
-  font-family: 'CustomFont'; /* 中文字体 */
+  font-family: 'CustomFont';
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'JapaneseFont'; /* 日语字体 */
+  font-family: 'JapaneseFont';
   src: url('../fonts/NotoSerifJP-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'RussianFont'; /* 俄语字体 */
+  font-family: 'RussianFont';
   src: url('../fonts/PlayfairDisplay-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -48,7 +48,7 @@ body.dark-mode {
 
 /* --- 通用样式 --- */
 body {
-    font-family: 'CustomFont', Arial, sans-serif; /* 默认字体 */
+    font-family: 'CustomFont', Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -56,7 +56,6 @@ body {
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
 }
-/* 用于在侧边栏打开时锁定背景滚动 */
 body.no-scroll {
     overflow: hidden;
 }
@@ -89,12 +88,20 @@ header {
 header .container {
     position: relative;
     display: flex;
-    justify-content: center; /* 移动端标题居中 */
+    justify-content: center;
     align-items: center;
+    /* ★★★ 新增：为标题创建安全区，防止与按钮重叠 ★★★ */
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
 }
 header h1 {
     margin: 0;
     font-size: 1.5em;
+    /* 防止超长文本撑破布局 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* --- 主要内容区域 --- */
@@ -179,6 +186,9 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
+    /* ★★★ 新增：修复移动端下拉菜单首次渲染问题 ★★★ */
+    width: 100%;
+    box-sizing: border-box;
 }
 .overlay { 
     display: none; 
@@ -200,6 +210,13 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
 @media (min-width: 768px) {
     header .container {
         justify-content: space-between;
+        /* 在桌面端保持合理的边距 */
+        padding-left: 0;
+        padding-right: 0;
+    }
+    header h1 {
+        white-space: normal;
+        overflow: visible;
     }
     .menu-toggle, .close-menu {
         display: none;
@@ -237,5 +254,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         background-color: transparent;
         border-color: var(--header-text-color);
         color: var(--header-text-color);
+        width: auto; /* 恢复宽度为自动 */
     }
 }
