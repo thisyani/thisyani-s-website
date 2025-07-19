@@ -1,13 +1,19 @@
 /* --- 字体定义 --- */
 @font-face {
-  font-family: 'CustomFont';
+  font-family: 'CustomFont'; /* 中文字体 */
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'JapaneseFont';
+  font-family: 'JapaneseFont'; /* 日语字体 */
   src: url('../fonts/NotoSerifJP-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RussianFont'; /* 俄语字体 */
+  src: url('../fonts/PlayfairDisplay-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -42,7 +48,7 @@ body.dark-mode {
 
 /* --- 通用样式 --- */
 body {
-    font-family: 'CustomFont', Arial, sans-serif;
+    font-family: 'CustomFont', Arial, sans-serif; /* 默认字体 */
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -55,9 +61,14 @@ body.no-scroll {
     overflow: hidden;
 }
 
+/* --- 特定语言字体应用 --- */
 html[lang="ja"] body {
     font-family: 'JapaneseFont', 'CustomFont', sans-serif;
 }
+html[lang="ru"] body {
+    font-family: 'RussianFont', 'CustomFont', serif;
+}
+
 .container {
     width: 90%;
     max-width: 960px;
@@ -103,8 +114,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
 移动端: 导航栏和侧边栏样式
 ================================
 */
-
-/* 汉堡按钮 */
 .menu-toggle {
     display: block;
     background: none;
@@ -118,8 +127,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     z-index: 999;
 }
 .menu-toggle svg { stroke: var(--header-text-color); }
-
-/* 侧边栏主体 */
 #main-nav {
     display: flex;
     flex-direction: column;
@@ -139,8 +146,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     overflow-y: auto;
 }
 #main-nav.open { transform: translateX(0); }
-
-/* 侧边栏关闭按钮 */
 .close-menu {
     display: block;
     position: absolute;
@@ -153,13 +158,9 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     cursor: pointer;
     line-height: 1;
 }
-
-/* 侧边栏内的导航链接 */
 .nav-links { list-style: none; padding: 0; margin: 0; }
 .nav-links a { text-decoration: none; color: var(--text-color); font-size: 1.2em; padding: 10px 0; display: block; }
 .nav-links a:hover { color: var(--link-color); }
-
-/* 侧边栏内的控制器 */
 .controls {
     display: flex;
     flex-direction: column;
@@ -179,8 +180,6 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
 }
-
-/* 遮罩层 */
 .overlay { 
     display: none; 
     position: fixed; 
