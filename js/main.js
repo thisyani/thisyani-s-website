@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleTheme: "切换主题",
             blogLink: "博客"
         },
-        'zh-TW': { // 新增繁體中文
+        'zh-TW': {
             pageTitle: "ヤンイー的個人主頁",
             avatarAlt: "ヤンイー的頭像",
             aboutMe: "關於我",
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleTheme: "テーマ切り替え",
             blogLink: "ブログ"
         },
-        ru: { // 新增俄语
+        ru: {
             pageTitle: "Домашняя страница ヤンイー",
             avatarAlt: "Аватар ヤンイー",
             aboutMe: "Обо мне",
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.title = langData.pageTitle;
-        htmlEl.lang = lang; // 直接使用语言代码 (e.g., "zh-CN", "ru")
+        htmlEl.lang = lang;
         localStorage.setItem('preferredLanguage', lang);
     };
 
@@ -133,13 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLang = localStorage.getItem('preferredLanguage');
         const browserLang = navigator.language;
 
-        // 设置一个默认语言
-        let initialLang = 'zh-CN'; 
+        let initialLang = 'zh-CN'; // 默认语言
 
         if (savedLang) {
             initialLang = savedLang;
         } else if (translations[browserLang]) {
-            // 完美匹配 (e.g., 浏览器是 "en", 我们有 "en")
             initialLang = browserLang;
         } else if (browserLang.startsWith('zh-TW') || browserLang.startsWith('zh-HK')) {
             initialLang = 'zh-TW';
