@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "关注我",
             footerText: "&copy; 2025 ヤンイー的个人主页",
             toggleTheme: "切换主题",
-            blogLink: "博客"
+            blogLink: "博客",
+            gameLink: "游戏" // 新增
         },
         'zh-TW': {
             pageTitle: "ヤンイー的個人主頁",
@@ -20,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "關注我",
             footerText: "&copy; 2025 ヤンイー的個人主頁",
             toggleTheme: "切換主題",
-            blogLink: "博客"
+            blogLink: "博客",
+            gameLink: "遊戲" // 新增
         },
         en: {
             pageTitle: "ヤンイー's Homepage",
@@ -30,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "Follow Me",
             footerText: "&copy; 2025 ヤンイー's Homepage",
             toggleTheme: "Toggle Theme",
-            blogLink: "Blog"
+            blogLink: "Blog",
+            gameLink: "Games" // 新增
         },
         ja: {
             pageTitle: "ヤンイーのホームページ",
@@ -40,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "フォローする",
             footerText: "&copy; 2025 ヤンイーのホームページ",
             toggleTheme: "テーマ切り替え",
-            blogLink: "ブログ"
+            blogLink: "ブログ",
+            gameLink: "ゲーム" // 新增
         },
         ru: {
             pageTitle: "Домашняя страница ヤンイー",
@@ -50,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followMe: "Подписаться",
             footerText: "&copy; 2025 Домашняя страница ヤンイー",
             toggleTheme: "Сменить тему",
-            blogLink: "Блог"
+            blogLink: "Блог",
+            gameLink: "Игры" // 新增
         }
     };
 
@@ -69,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mainNav && overlay && bodyEl) {
             mainNav.classList.add('open');
             overlay.classList.add('active');
-            bodyEl.classList.add('no-scroll'); // 锁定body滚动
+            bodyEl.classList.add('no-scroll');
         }
     };
 
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mainNav && overlay && bodyEl) {
             mainNav.classList.remove('open');
             overlay.classList.remove('active');
-            bodyEl.classList.remove('no-scroll'); // 解锁body滚动
+            bodyEl.classList.remove('no-scroll');
         }
     };
 
@@ -128,12 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 6. 初始化 ---
-    // 语言初始化
     if (langSwitcher) {
         const savedLang = localStorage.getItem('preferredLanguage');
         const browserLang = navigator.language;
 
-        let initialLang = 'zh-CN'; // 默认语言
+        let initialLang = 'zh-CN';
 
         if (savedLang) {
             initialLang = savedLang;
@@ -159,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 主题初始化
     const savedTheme = localStorage.getItem('preferredTheme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let initialTheme = 'light';
