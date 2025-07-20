@@ -17,9 +17,8 @@
   font-weight: normal;
   font-style: normal;
 }
-/* ★★★ 新增：繁體中文字体定义 ★★★ */
 @font-face {
-  font-family: 'TraditionalChineseFont';
+  font-family: 'TraditionalChineseFont'; /* 繁體中文字体 */
   src: url('../fonts/NotoSerifHK-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -75,7 +74,6 @@ html[lang="ja"] body {
 html[lang="ru"] body {
     font-family: 'RussianFont', 'CustomFont', serif;
 }
-/* ★★★ 新增：为繁體中文模式应用特定字体 ★★★ */
 html[lang="zh-TW"] body {
     font-family: 'TraditionalChineseFont', 'CustomFont', serif;
 }
@@ -125,7 +123,16 @@ header h1 {
 .social-media li { display: inline-block; margin: 0 15px; }
 .social-media a { text-decoration: none; color: var(--link-color); font-size: 1.1em; transition: color 0.3s; }
 .social-media a:hover { text-decoration: underline; }
-footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--footer-text-color); transition: color 0.3s; }
+
+/* ★★★ 修改：为页脚指定字体 ★★★ */
+footer {
+    font-family: 'JapaneseFont', sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: var(--footer-text-color);
+    transition: color 0.3s;
+}
 
 /*
 ================================
