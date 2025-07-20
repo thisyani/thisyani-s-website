@@ -1,22 +1,30 @@
 /* --- 字体定义 --- */
 @font-face {
-  font-family: 'CustomFont';
+  font-family: 'CustomFont'; /* 简体中文/默认字体 */
   src: url('../fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'JapaneseFont';
+  font-family: 'JapaneseFont'; /* 日语字体 */
   src: url('../fonts/NotoSerifJP-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'RussianFont';
+  font-family: 'RussianFont'; /* 俄语字体 */
   src: url('../fonts/PlayfairDisplay-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+/* ★★★ 新增：繁體中文字体定义 ★★★ */
+@font-face {
+  font-family: 'TraditionalChineseFont';
+  src: url('../fonts/NotoSerifHK-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* --- 变量定义 --- */
 :root {
@@ -67,6 +75,10 @@ html[lang="ja"] body {
 html[lang="ru"] body {
     font-family: 'RussianFont', 'CustomFont', serif;
 }
+/* ★★★ 新增：为繁體中文模式应用特定字体 ★★★ */
+html[lang="zh-TW"] body {
+    font-family: 'TraditionalChineseFont', 'CustomFont', serif;
+}
 
 .container {
     width: 90%;
@@ -100,7 +112,6 @@ header h1 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* ★★★ 修改：强制标题使用指定字体 ★★★ */
     font-family: 'JapaneseFont', sans-serif;
 }
 
