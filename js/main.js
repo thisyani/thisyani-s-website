@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			aboutMe: "关于我",
 			aboutMeText: "欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。",
 			followMe: "关注我",
-			latestVideo: "我的最新视频",   // ★ 新增
+			latestVideo: "我的最新视频",
 			footerText: "&copy; 2025 ヤンイー",
 			toggleTheme: "切换主题",
 			blogLink: "博客",
-			gameLink: "游戏"
+			gameLink: "游戏",
+			recommendedMusic: "推荐一个音乐"
 		},
 
 		'zh-TW': {
@@ -21,11 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			aboutMe: "關於我",
 			aboutMeText: "歡迎來到我的個人主頁。我是一名活躍在多個平台上的內容創作者，你可以在Bilibili、YouTube和X上找到我。",
 			followMe: "關注我",
-			latestVideo: "我的最新影片",   // ★ 新增
+			latestVideo: "我的最新影片",
 			footerText: "&copy; 2025 ヤンイー",
 			toggleTheme: "切換主題",
 			blogLink: "博客",
-			gameLink: "遊戲"
+			gameLink: "遊戲",
+			recommendedMusic: "推薦一首音樂"
     	},
 
 		en: {
@@ -34,11 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			aboutMe: "About Me",
 			aboutMeText: "Welcome to my homepage. I am a content creator active on multiple platforms. You can find me on Bilibili, YouTube, and X.",
 			followMe: "Follow Me",
-			latestVideo: "My Latest Video",   // ★ 新增
+			latestVideo: "My Latest Video",
 			footerText: "&copy; 2025 ヤンイー",
 			toggleTheme: "Toggle Theme",
 			blogLink: "Blog",
-			gameLink: "Games"
+			gameLink: "Games",
+			recommendedMusic: "Recommended Music"
 		},
 
 		ja: {
@@ -47,11 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			aboutMe: "私について",
 			aboutMeText: "私のホームページへようこそ。私は複数のプラットフォームで活動しているコンテンツクリエーターです。Bilibili、YouTube、Xで私を見つけることができます。",
 			followMe: "フォローする",
-			latestVideo: "最新の動画",   // ★ 新增
+			latestVideo: "最新の動画",
 			footerText: "&copy; 2025 ヤンイー",
 			toggleTheme: "テーマ切り替え",
 			blogLink: "ブログ",
-        	gameLink: "ゲーム"
+        	gameLink: "ゲーム",
+			recommendedMusic: "おすすめの音楽"
     	},
 
 		ru: {
@@ -60,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         	aboutMe: "Обо мне",
         	aboutMeText: "Добро пожаловать на мою домашнюю страницу. Я создатель контента, активный на нескольких платформах. Вы можете найти меня на Bilibili, YouTube и X.",
         	followMe: "Подписаться",
-        	latestVideo: "Моё последнее видео",   // ★ 新增
+        	latestVideo: "Моё последнее видео",
         	footerText: "&copy; 2025 ヤンイー",
         	toggleTheme: "Сменить тему",
         	blogLink: "Блог",
-        	gameLink: "Игры"
+        	gameLink: "Игры",
+			recommendedMusic: "Рекомендованная музыка"
 		}
 	};
 
