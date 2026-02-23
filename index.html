@@ -4,35 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ヤンイー</title>
+
+    <!-- 引入样式文件 -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 遮罩层，用于在侧边栏打开时覆盖主内容 -->
+
+    <!-- 遮罩层（移动端侧边栏展开时使用） -->
     <div id="overlay" class="overlay"></div>
 
+    <!-- =========================
+         头部区域
+    ========================== -->
     <header>
         <div class="container">
             <h1 data-lang-key="pageTitle">ヤンイー</h1>
-            
-            <!-- 汉堡菜单按钮，仅在移动端显示 -->
+
+            <!-- 移动端汉堡菜单按钮 -->
             <button id="menu-toggle" class="menu-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </button>
-            
-            <!-- 导航功能栏 -->
+
+            <!-- 导航栏 -->
             <nav id="main-nav">
-                <!-- 侧边栏关闭按钮，仅在移动端显示 -->
+                <!-- 移动端关闭按钮 -->
                 <button id="close-menu" class="close-menu">&times;</button>
-                
-                <!-- 导航链接 -->
+
+                <!-- 页面链接 -->
                 <ul class="nav-links">
-                    <li><a href="https://blog.yani.qzz.io" target="_blank" data-lang-key="blogLink">博客</a></li>
-                    <li><a href="https://games.yani.qzz.io" target="_blank" data-lang-key="gameLink">游戏</a></li>
+                    <li><a data-lang-key="blogLink" href="https://blog.yani.qzz.io" target="_blank">博客</a></li>
+                    <li><a data-lang-key="gameLink"href="https://games.yani.qzz.io" target="_blank">游戏</a></li>
                 </ul>
-                
-                <!-- 语言和主题切换器 -->
+
+                <!-- 主题 + 语言切换 -->
                 <div class="controls">
-                    <button id="theme-toggle" class="control-btn" data-lang-key="toggleTheme">切换主题</button>
+                    <button data-lang-key="toggleTheme" id="theme-toggle" class="control-btn">切换主题</button>
+
                     <select id="lang-switcher" class="control-btn">
                         <option value="zh-CN">简体中文</option>
                         <option value="zh-TW">繁體中文</option>
@@ -45,30 +59,70 @@
         </div>
     </header>
 
+    <!-- =========================
+         主内容区域
+    ========================== -->
     <div class="container main-content">
         <div class="main">
-            <img src="img/me.png" alt="ヤンイー" class="profile-image" data-lang-key-alt="avatarAlt">
-            
+
+            <!-- 头像 -->
+            <img src="img/me.png" alt="ヤンイー"
+                 class="profile-image">
+
+            <!-- 关于我 -->
             <section class="about">
                 <h2 data-lang-key="aboutMe">关于我</h2>
-                <p data-lang-key="aboutMeText">欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，你可以在Bilibili、YouTube和X上找到我。</p>
+                <p data-lang-key="aboutMeText">
+                    欢迎来到我的个人主页。我是一名活跃在多个平台上的内容创作者，
+                    你可以在 Bilibili、YouTube 和 X 上找到我。
+                </p>
             </section>
 
+            <!-- 关注我 -->
             <section class="social-media">
                 <h2 data-lang-key="followMe">关注我</h2>
                 <ul>
                     <li><a href="https://b23.tv/Aw3SaUg" target="_blank">Bilibili</a></li>
-                    <li><a href="https://youtube.com/@disxiaoyi?si=k233PuFvrYLoBLde" target="_blank">YouTube</a></li>
-                    <li><a href="https://x.com/DisXiaoyi?t=T2jxzVN4sFp6Ytbjdd1S0g&s=09" target="_blank">X (Twitter)</a></li>
+                    <li><a href="https://youtube.com/@disxiaoyi" target="_blank">YouTube</a></li>
+                    <li><a href="https://x.com/DisXiaoyi" target="_blank">X (Twitter)</a></li>
                 </ul>
             </section>
+
+            <!-- =========================
+                 ★ 新增：最新视频模块 ★
+            ========================== -->
+            <section class="latest-video">
+
+                <!-- 模块标题 -->
+                <h2 data-lang-key="latestVideo">我的最新视频</h2>
+
+                <!-- 视频自适应容器（保持 16:9 比例） -->
+                <div class="video-wrapper">
+
+                    <!-- Bilibili 嵌入播放器 -->
+                    <iframe 
+                        src="//player.bilibili.com/player.html?isOutside=true&aid=115910413127611&bvid=BV1PLrSBDEUE&cid=35445869093&p=1"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true">
+                    </iframe>
+
+                </div>
+            </section>
+            <!-- ========================= -->
+
         </div>
     </div>
 
+    <!-- 页脚 -->
     <footer>
-        <p data-lang-key="footerText">&copy; 2025 ヤンイー</p>
+        <p>&copy; 2025 ヤンイー</p>
     </footer>
 
+    <!-- JS 文件 -->
     <script src="js/main.js"></script>
+
 </body>
 </html>
