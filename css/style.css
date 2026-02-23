@@ -17,8 +17,9 @@
   font-weight: normal;
   font-style: normal;
 }
+/* ★★★ 新增：繁體中文字体定义 ★★★ */
 @font-face {
-  font-family: 'TraditionalChineseFont'; /* 繁體中文字体 */
+  font-family: 'TraditionalChineseFont';
   src: url('../fonts/NotoSerifHK-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -74,6 +75,7 @@ html[lang="ja"] body {
 html[lang="ru"] body {
     font-family: 'RussianFont', 'CustomFont', serif;
 }
+/* ★★★ 新增：为繁體中文模式应用特定字体 ★★★ */
 html[lang="zh-TW"] body {
     font-family: 'TraditionalChineseFont', 'CustomFont', serif;
 }
@@ -123,16 +125,7 @@ header h1 {
 .social-media li { display: inline-block; margin: 0 15px; }
 .social-media a { text-decoration: none; color: var(--link-color); font-size: 1.1em; transition: color 0.3s; }
 .social-media a:hover { text-decoration: underline; }
-
-/* ★★★ 修改：为页脚指定字体 ★★★ */
-footer {
-    font-family: 'JapaneseFont', sans-serif;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    color: var(--footer-text-color);
-    transition: color 0.3s;
-}
+footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--footer-text-color); transition: color 0.3s; }
 
 /*
 ================================
@@ -272,4 +265,40 @@ footer {
         color: var(--header-text-color);
         width: auto;
     }
+}
+/* ===============================
+   最新视频模块样式
+================================ */
+
+/* 模块整体间距 */
+.latest-video {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* 标题样式 */
+.latest-video h2 {
+    margin-bottom: 20px;
+}
+
+/* 视频自适应容器 */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;      /* 最大宽度限制 */
+    margin: 0 auto;
+    padding-bottom: 56.25%; /* 16:9 比例 (9/16=0.5625) */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 12px var(--shadow-color);
+}
+
+/* 让 iframe 填满容器 */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
