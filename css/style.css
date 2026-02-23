@@ -322,3 +322,18 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
     overflow: hidden;
     box-shadow: 0 0 12px var(--shadow-color);
 }
+
+/*修正音乐与视频居中问题*/
+
+.latest-video, .recommended-music {
+    max-width: 800px;
+    margin: 40px auto 0 auto; /* 居中优化，建议顶部margin与原先一致 */
+    text-align: center;
+}
+.latest-video { margin-top: 40px; }
+.recommended-music { margin-top: 50px; }
+.latest-video h2, .recommended-music h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
