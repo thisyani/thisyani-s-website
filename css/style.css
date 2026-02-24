@@ -244,6 +244,17 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         z-index: auto;
         overflow-y: visible;
     }
+    /* 横向排列 nav-links */
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+    }
+    .nav-links li {
+        display: block;
+        margin: 0;
+    }
     .nav-links a {
         padding: 0;
         color: var(--header-text-color);
