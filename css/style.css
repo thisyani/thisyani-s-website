@@ -60,7 +60,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: var(--bg-color);
+    background: var(--bg-color) url('../img/wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
 }
