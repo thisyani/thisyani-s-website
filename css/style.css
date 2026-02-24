@@ -398,3 +398,14 @@ footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--foote
         filter: blur(2px);
     }
 }
+
+header {
+    position: sticky;      /* 关键属性 */
+    top: 0;                /* 吸附于页面顶端 */
+    z-index: 2000;         /* 确保在其他层之上 */
+    background: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 1rem 0;
+    transition: background 0.3s;
+    width: 100%;           /* 保证全宽 */
+}
